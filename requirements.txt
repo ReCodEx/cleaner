@@ -1,0 +1,8 @@
+#
+# Required packages for ReCodEx cleaner tool
+#
+
+# Argument and configuration parsing
+pyyaml
+argparse
+
