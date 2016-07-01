@@ -1,0 +1,18 @@
+# ReCodEx cleaner systemd timer configuration file
+#
+# This file should be placed in /etc/systemd/system/ directory
+# For starting cleaner, following should be met:
+# 	- config file with name 'config.yml' in conf directory
+#	- run 'systemctl start recodex-cleaner.timer'
+
+[Unit]
+Description=Recodex Cleaner
+Documentation=http://recodex.github.io/cleaner/,https://github.com/ReCodEx/GlobalWiki/wiki
+DefaultDependencies=true
+
+[Timer]
+OnCalendar=daily
+Persistent=true     
+ 
+[Install]
+WantedBy=timers.target

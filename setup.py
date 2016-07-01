@@ -23,7 +23,7 @@ setup(name='recodex-cleaner',
       packages=['cleaner'],
       package_data={'': ['../install/*']},
       data_files=[
-          ('/etc/systemd/system', ['install/recodex-cleaner.service']),
+          ('/etc/systemd/system', ['install/recodex-cleaner.service', 'install/recodex-cleaner.timer']),
           ('/etc/recodex/cleaner', ['install/config.yml'])
           ],
       entry_points={'console_scripts': ['recodex-cleaner = cleaner.main:main']}
