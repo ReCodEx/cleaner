@@ -87,3 +87,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Sphinx documentation
+docs/*
+!docs/index.rst
+!docs/Makefile
+!docs/make.bat
+!docs/conf.py
