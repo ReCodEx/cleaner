@@ -1,4 +1,0 @@
----
-cache-dir: "./"
-file-age: "3600"  # in seconds
-...

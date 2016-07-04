@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cleaner package &mdash; cleaner 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="cleaner 0.1.0 documentation" href="index.html" />
+    <link rel="up" title="cleaner" href="modules.html" />
+    <link rel="prev" title="cleaner" href="modules.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="cleaner"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">cleaner 0.1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">cleaner</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cleaner-package">
+<h1>cleaner package<a class="headerlink" href="#cleaner-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-cleaner.config_manager">
+<span id="cleaner-config-manager-module"></span><h2>cleaner.config_manager module<a class="headerlink" href="#module-cleaner.config_manager" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cleaner.config_manager.ConfigManager">
+<em class="property">class </em><code class="descclassname">cleaner.config_manager.</code><code class="descname">ConfigManager</code><span class="sig-paren">(</span><em>config_file=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/config_manager.html#ConfigManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.config_manager.ConfigManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class to handle all configuration items.</p>
+<dl class="method">
+<dt id="cleaner.config_manager.ConfigManager.get_cache_dir">
+<code class="descname">get_cache_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/config_manager.html#ConfigManager.get_cache_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.config_manager.ConfigManager.get_cache_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get directory in which cache of worker is placed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Single string value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cleaner.config_manager.ConfigManager.get_file_age">
+<code class="descname">get_file_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/config_manager.html#ConfigManager.get_file_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.config_manager.ConfigManager.get_file_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get maximum file age in seconds.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Single textual value</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-cleaner.main">
+<span id="cleaner-main-module"></span><h2>cleaner.main module<a class="headerlink" href="#module-cleaner.main" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cleaner.main.Cleaner">
+<em class="property">class </em><code class="descclassname">cleaner.main.</code><code class="descname">Cleaner</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Cleaner class handles cleaning of given cache folder.
+Files are cleaned based on last access time, which have to be in interval given in configuration.</p>
+<dl class="method">
+<dt id="cleaner.main.Cleaner.check_cache_dir">
+<code class="descname">check_cache_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.check_cache_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.check_cache_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if cache directory is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if cache directory is not valid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cleaner.main.Cleaner.check_file_age">
+<code class="descname">check_file_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.check_file_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.check_file_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if file age value is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if file age is not valid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cleaner.main.Cleaner.clean">
+<code class="descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleaning itself. Cleans cache folder from files which are older than interval given in configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="cleaner.main.main">
+<code class="descclassname">cleaner.main.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function which have to be called in order to execute cleaner properly.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-cleaner">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-cleaner" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">cleaner package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cleaner.config_manager">cleaner.config_manager module</a></li>
+<li><a class="reference internal" href="#module-cleaner.main">cleaner.main module</a></li>
+<li><a class="reference internal" href="#module-cleaner">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">cleaner</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cleaner.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="cleaner"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">cleaner 0.1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >cleaner</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, ReCodEx Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>

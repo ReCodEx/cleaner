@@ -1,0 +1,30 @@
+cleaner package
+===============
+
+Submodules
+----------
+
+cleaner.config_manager module
+-----------------------------
+
+.. automodule:: cleaner.config_manager
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+cleaner.main module
+-------------------
+
+.. automodule:: cleaner.main
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: cleaner
+    :members:
+    :undoc-members:
+    :show-inheritance:
