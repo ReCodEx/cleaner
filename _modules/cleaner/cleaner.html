@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cleaner.cleaner &mdash; cleaner 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="cleaner 0.1.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">cleaner 0.1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cleaner.cleaner</h1><div class="highlight"><pre>
+<span class="ch">#!/usr/bin/env python3</span>
+
+<span class="kn">from</span> <span class="nn">.config_manager</span> <span class="kn">import</span> <span class="n">ConfigManager</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<div class="viewcode-block" id="Cleaner"><a class="viewcode-back" href="../../cleaner.html#cleaner.cleaner.Cleaner">[docs]</a><span class="k">class</span> <span class="nc">Cleaner</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cleaner class handles cleaning of given cache folder.</span>
+<span class="sd">    Files are cleaned based on last access time, which have to be in interval given in configuration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constructor which takes configuration of cleaner.</span>
+
+<span class="sd">        :param config: have to be instance of ConfigManager class</span>
+<span class="sd">        :raises Exception: if values from configuration are not valid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_cache_dir</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_file_age</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_cache_dir</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_file_age</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Cleaner.check_cache_dir"><a class="viewcode-back" href="../../cleaner.html#cleaner.cleaner.Cleaner.check_cache_dir">[docs]</a>    <span class="k">def</span> <span class="nf">check_cache_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if cache directory is valid.</span>
+
+<span class="sd">        :return: Nothing</span>
+<span class="sd">        :raises Exception: if cache directory is not valid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cache directory not specified!&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Cache directory is not a directory&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cleaner.check_file_age"><a class="viewcode-back" href="../../cleaner.html#cleaner.cleaner.Cleaner.check_file_age">[docs]</a>    <span class="k">def</span> <span class="nf">check_file_age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if file age value is valid.</span>
+
+<span class="sd">        :return: Nothing</span>
+<span class="sd">        :raises Exception: if file age is not valid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;File age not specified!&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;File age is not a number!&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Cleaner.clean"><a class="viewcode-back" href="../../cleaner.html#cleaner.cleaner.Cleaner.clean">[docs]</a>    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Cleaning itself. Cleans cache folder from files or folders which are older than interval given in configuration.</span>
+
+<span class="sd">        :return: Nothing</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># some general debug information about this time execution</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;****************************************&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Cleaning files from </span><span class="se">\&quot;</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;With maximum file age: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; seconds&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Timestamp now: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; seconds&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;****************************************&quot;</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">process_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Process given path, path can be file or directory.</span>
+<span class="sd">            Given action is executed on constructed full path</span>
+
+<span class="sd">            :param root: path to root directory, used as base</span>
+<span class="sd">            :param file: name of file itself, root is used as base and joined with this</span>
+<span class="sd">            :param action: action which will be performed if access timestamp is older than given interval</span>
+<span class="sd">            :return: Nothing</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+            <span class="n">last_access</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span><span class="o">.</span><span class="n">st_atime</span><span class="p">)</span>
+            <span class="n">difference</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">last_access</span>
+
+            <span class="k">print</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;    last access: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">last_access</span><span class="p">))</span>
+            <span class="k">print</span><span class="p">(</span><span class="s2">&quot;    difference: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">difference</span><span class="p">))</span>
+
+            <span class="k">if</span> <span class="n">difference</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file_age</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">action</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;    &gt;&gt;&gt; REMOVED &lt;&lt;&lt;&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;    &gt;&gt;&gt; Exception occured: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ex</span><span class="p">))</span>
+
+        <span class="c1"># iterate recursively through given directory</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cache_dir</span><span class="p">):</span>
+            <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">process_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">)</span>
+            <span class="k">for</span> <span class="nb">dir</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+                <span class="n">process_path</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">dir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">rmdir</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">cleaner 0.1.0 documentation</a> &raquo;</li>
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &copy; Copyright 2016, ReCodEx Team.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.4.
+    </div>
+  </body>
+</html>

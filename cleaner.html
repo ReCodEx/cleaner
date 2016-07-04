@@ -55,6 +55,63 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="module-cleaner.cleaner">
+<span id="cleaner-cleaner-module"></span><h2>cleaner.cleaner module<a class="headerlink" href="#module-cleaner.cleaner" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cleaner.cleaner.Cleaner">
+<em class="property">class </em><code class="descclassname">cleaner.cleaner.</code><code class="descname">Cleaner</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/cleaner.html#Cleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.cleaner.Cleaner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Cleaner class handles cleaning of given cache folder.
+Files are cleaned based on last access time, which have to be in interval given in configuration.</p>
+<dl class="method">
+<dt id="cleaner.cleaner.Cleaner.check_cache_dir">
+<code class="descname">check_cache_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/cleaner.html#Cleaner.check_cache_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.cleaner.Cleaner.check_cache_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if cache directory is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if cache directory is not valid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cleaner.cleaner.Cleaner.check_file_age">
+<code class="descname">check_file_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/cleaner.html#Cleaner.check_file_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.cleaner.Cleaner.check_file_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if file age value is valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if file age is not valid</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cleaner.cleaner.Cleaner.clean">
+<code class="descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/cleaner.html#Cleaner.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.cleaner.Cleaner.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleaning itself. Cleans cache folder from files or folders which are older than interval given in configuration.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-cleaner.config_manager">
 <span id="cleaner-config-manager-module"></span><h2>cleaner.config_manager module<a class="headerlink" href="#module-cleaner.config_manager" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -95,60 +152,6 @@
 </div>
 <div class="section" id="module-cleaner.main">
 <span id="cleaner-main-module"></span><h2>cleaner.main module<a class="headerlink" href="#module-cleaner.main" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="cleaner.main.Cleaner">
-<em class="property">class </em><code class="descclassname">cleaner.main.</code><code class="descname">Cleaner</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Cleaner class handles cleaning of given cache folder.
-Files are cleaned based on last access time, which have to be in interval given in configuration.</p>
-<dl class="method">
-<dt id="cleaner.main.Cleaner.check_cache_dir">
-<code class="descname">check_cache_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.check_cache_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.check_cache_dir" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if cache directory is valid.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if cache directory is not valid</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="cleaner.main.Cleaner.check_file_age">
-<code class="descname">check_file_age</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.check_file_age"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.check_file_age" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if file age value is valid.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><strong>Exception</strong> &#8211; if file age is not valid</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="cleaner.main.Cleaner.clean">
-<code class="descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#Cleaner.clean"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.Cleaner.clean" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cleaning itself. Cleans cache folder from files which are older than interval given in configuration.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Nothing</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="function">
 <dt id="cleaner.main.main">
 <code class="descclassname">cleaner.main.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/cleaner/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cleaner.main.main" title="Permalink to this definition">¶</a></dt>
@@ -179,6 +182,7 @@ Files are cleaned based on last access time, which have to be in interval given 
   <ul>
 <li><a class="reference internal" href="#">cleaner package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-cleaner.cleaner">cleaner.cleaner module</a></li>
 <li><a class="reference internal" href="#module-cleaner.config_manager">cleaner.config_manager module</a></li>
 <li><a class="reference internal" href="#module-cleaner.main">cleaner.main module</a></li>
 <li><a class="reference internal" href="#module-cleaner">Module contents</a></li>

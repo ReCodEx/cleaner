@@ -4,6 +4,14 @@ cleaner package
 Submodules
 ----------
 
+cleaner.cleaner module
+----------------------
+
+.. automodule:: cleaner.cleaner
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 cleaner.config_manager module
 -----------------------------
 
