@@ -1,4 +1,4 @@
 ---
-cache-dir: "./"
+cache-dir: "/tmp"
 file-age: "3600"  # in seconds
 ...

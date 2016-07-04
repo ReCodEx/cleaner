@@ -14,7 +14,9 @@ Cleaner is script which should be cronned on machine on which worker is deployed
 
 **Windows:**
 
-- TODO
+- start `cmd` with administrator permissions
+- run following command `fsutil behavior set disablelastaccess 0`
+- restart computer and last time access timestamps should be functional
 
 ## How to run it
 
