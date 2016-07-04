@@ -10,7 +10,9 @@ Cleaner is script which should be cronned on machine on which worker is deployed
 
 **Linux:**
 
-- TODO
+- open `/etc/fstab` as administrator
+- filesystem which will be used as `ReCodEx` cache has to have `strictatime` option specified
+- more on this subject can be found [here](https://en.wikipedia.org/wiki/Stat_%28system_call%29#Criticism_of_atime)
 
 **Windows:**
 
