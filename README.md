@@ -6,12 +6,22 @@
 
 Cleaner is script which should be cronned on machine on which worker is deployed. Its function is continuously delete cache folder from old files which are no longer used. To efectively do this filesystem should be able to display last access time.
 
+## Enable last access timestamp
+
+**Linux:**
+
+- TODO
+
+**Windows:**
+
+- TODO
+
 ## How to run it
 
-Whole cleaner is written in `python` and uses `Python3` features.
+Whole cleaner is written in `python` and uses version 3 features.
 
-- install `python3` and `pip` according to your OS
-- install dependencies using `pip install -r requirements.txt`
+- install `python3` and `pip3` according to your OS
+- install dependencies using `pip3 install -r requirements.txt`
 - run app with `python3 ./main.py -c ./install/config.yml`, without specifying config file cleaner will not work
 
 ## Installation

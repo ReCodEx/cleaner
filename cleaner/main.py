@@ -19,6 +19,7 @@ class Cleaner:
     def __init__(self, config):
         """
         Constructor which takes configuration of cleaner.
+
         :param config: have to be instance of ConfigManager class
         :raises Exception: if values from configuration are not valid
         """
@@ -31,6 +32,7 @@ class Cleaner:
     def check_cache_dir(self):
         """
         Check if cache directory is valid.
+
         :return: Nothing
         :raises Exception: if cache directory is not valid
         """
@@ -43,6 +45,7 @@ class Cleaner:
     def check_file_age(self):
         """
         Check if file age value is valid.
+
         :return: Nothing
         :raises Exception: if file age is not valid
         """
@@ -55,6 +58,7 @@ class Cleaner:
     def clean(self):
         """
         Cleaning itself. Cleans cache folder from files which are older than interval given in configuration.
+
         :return: Nothing
         """
         print("Cleaning directory: " + self._cache_dir)
@@ -64,6 +68,7 @@ class Cleaner:
 def main():
     """
     Main function which have to be called in order to execute cleaner properly.
+
     :return: Nothing
     """
     args = parser.parse_args()

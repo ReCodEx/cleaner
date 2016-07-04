@@ -2,6 +2,9 @@
 # Required packages for ReCodEx cleaner tool
 #
 
+# Setup
+setuptools
+
 # Argument and configuration parsing
 pyyaml
 argparse
