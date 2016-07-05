@@ -1,8 +1,16 @@
 #!/usr/bin/env python3
 
 from setuptools import setup
+import sys
 from cleaner import __version__
 
+if sys.platform == "win32":
+    files=[('conf', ['install/config.yml'])]
+else:
+    files=[
+        ('/etc/systemd/system', ['install/recodex-cleaner.service', 'install/recodex-cleaner.timer']),
+        ('/etc/recodex/cleaner', ['install/config.yml'])
+        ]
 
 setup(name='recodex-cleaner',
       version=__version__,
@@ -15,16 +23,13 @@ setup(name='recodex-cleaner',
       classifiers=["Development Status :: 3 - Alpha",
                    "Intended Audience :: Developers",
                    "License :: OSI Approved :: MIT License",
-                   'Operating System :: POSIX :: Linux',
+                   'Operating System :: OS Independent',
                    "Programming Language :: Python",
                    "Programming Language :: Python :: 3",
                    "Programming Language :: Python :: 3.4",
                    "Programming Language :: Python :: 3.5"],
       packages=['cleaner'],
       package_data={'': ['../install/*']},
-      data_files=[
-          ('/etc/systemd/system', ['install/recodex-cleaner.service', 'install/recodex-cleaner.timer']),
-          ('/etc/recodex/cleaner', ['install/config.yml'])
-          ],
+      data_files=files,
       entry_points={'console_scripts': ['recodex-cleaner = cleaner.main:main']}
       )

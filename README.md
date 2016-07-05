@@ -22,7 +22,7 @@ Cleaner is script which should be cronned on machine on which worker is deployed
 
 ## How to run it
 
-Whole cleaner is written in `python` and uses version 3 features.
+Whole cleaner is written in `python` and uses version 3 features. If version 3 is default on machine simple `python` command can be used.
 
 - install `python3` and `pip3` according to your OS
 - install dependencies using `pip3 install -r requirements.txt`
@@ -42,12 +42,31 @@ Whole cleaner is written in `python` and uses version 3 features.
 
 **Windows:**
 
-- TODO
-- TODO
+- run `python setup.py bdist_wininst` to generate clickable binary installer
+- install program using generated installer in `dist` directory
 
 ## Configuration and running
 
-Installation of `cleaner` contains `systemd` `*.timer` and `*.service` files which can be used to run it. Running through `systemd` is quite advised, because of prepared configuration. In case of manual execution, `cleaner` should be run using `cron` with some reasonable interval (once in day should work).
+Generally there are two steps which has to be done to properly run cleaner service.
 
-- edit configuration file `/etc/recodex/cleaner/config.yml`. **Cache directory which will be cleaned should be same as for workers!**
+- editation of configuration file and setting up all things needed. **Note: Cache directory which will be cleaned should be same as for workers!**
+- Setup cron to execute cleaner in given interval (once in a day should work)
+
+**Linux (with systemd):**
+
+Installation of `cleaner` contains `systemd` `*.timer` and `*.service` files which can be used to run it. Running through `systemd` is quite advised, because of prepared configuration.
+
+- edit configuration file `/etc/recodex/cleaner/config.yml`
 - run with systemd timer via `sudo systemctl start recodex-cleaner.timer`
+
+**Linux (with cron):**
+
+In case of manual execution, `cleaner` should be run using `cron` with some recommended interval.
+
+- edit configuration file `/etc/recodex/cleaner/config.yml`
+- edit crontab (`/etc/crontab`) and add following line: `0 0 * * * /usr/bin/recodex-cleaner -c /etc/recodex/cleaner/config.yml`
+- given entry will run cleaner at 00:00 every day
+
+**Windows:**
+
+Cronning in Windows is provided by `Task Scheduler`. TODO...
