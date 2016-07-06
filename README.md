@@ -42,7 +42,7 @@ Whole cleaner is written in `python` and uses version 3 features. If version 3 i
 
 **Windows:**
 
-- run `python setup.py bdist_wininst` to generate clickable binary installer
+- run `python setup.py bdist_msi` to generate clickable binary installer
 - install program using generated installer in `dist` directory
 
 ## Configuration and running

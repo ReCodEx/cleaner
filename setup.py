@@ -29,7 +29,6 @@ setup(name='recodex-cleaner',
                    "Programming Language :: Python :: 3.4",
                    "Programming Language :: Python :: 3.5"],
       packages=['cleaner'],
-      package_data={'': ['../install/*']},
       data_files=files,
       entry_points={'console_scripts': ['recodex-cleaner = cleaner.main:main']}
       )
