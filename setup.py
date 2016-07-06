@@ -5,7 +5,7 @@ import sys
 from cleaner import __version__
 
 if sys.platform == "win32":
-    files=[('conf', ['install/config.yml'])]
+    files=[]
 else:
     files=[
         ('/etc/systemd/system', ['install/recodex-cleaner.service', 'install/recodex-cleaner.timer']),

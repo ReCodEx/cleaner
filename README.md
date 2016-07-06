@@ -42,8 +42,10 @@ Whole cleaner is written in `python` and uses version 3 features. If version 3 i
 
 **Windows:**
 
-- run `python setup.py bdist_msi` to generate clickable binary installer
-- install program using generated installer in `dist` directory
+- start `cmd` with administrator permissions
+- decide in which folder cleaner should be installed, `C:\Program Files\ReCodEx\cleaner` is assumed
+- run installation with `python setup.py install --install-scripts "C:\Program Files\ReCodEx\cleaner"` where path specified with `--install-scripts` can be changed
+- copy configuration file alongside with installed executable using `copy install\config.yml "C:\Program Files\ReCodEx\cleaner\config.yml"`
 
 ## Configuration and running
 
