@@ -71,4 +71,9 @@ In case of manual execution, `cleaner` should be run using `cron` with some reco
 
 **Windows:**
 
-Cronning in Windows is provided by `Task Scheduler`. TODO...
+Cronning on Windows is provided by `Task Scheduler`. This can be done using GUI interface or with command line, command line description follows:
+
+- start `cmd` as administrator
+- find your `recodex-cleaner` installation on your filesystem, `C:\Program Files\ReCodEx\cleaner` will be used as demonstrative
+- execute following command `schtasks /create /sc daily /tn "ReCodEx Cleaner" /tr "\"C:\Program Files\ReCodEx\cleaner\recodex-cleaner.exe\" -c \"C:\Program Files\ReCodEx\cleaner\config.yml\""`
+- this will create task named `ReCodEx Cleaner` which will be executed daily on time of creation
