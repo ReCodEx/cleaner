@@ -8,9 +8,9 @@ if sys.platform == "win32":
     files=[]
 else:
     files=[
-        ('/etc/systemd/system', ['install/recodex-cleaner.service', 'install/recodex-cleaner.timer']),
-        ('/etc/recodex/cleaner', ['install/config.yml'])
-        ]
+        ('/etc/systemd/system', ['cleaner/install/recodex-cleaner.service', 'cleaner/install/recodex-cleaner.timer']),
+        ('/etc/recodex/cleaner', ['cleaner/install/config.yml'])
+    ]
 
 setup(name='recodex-cleaner',
       version=__version__,
@@ -29,6 +29,7 @@ setup(name='recodex-cleaner',
                    "Programming Language :: Python :: 3.4",
                    "Programming Language :: Python :: 3.5"],
       packages=['cleaner'],
+      package_data={'': ['./install/*']},
       data_files=files,
       entry_points={'console_scripts': ['recodex-cleaner = cleaner.main:main']}
       )

@@ -26,19 +26,19 @@ Whole cleaner is written in `python` and uses version 3 features. If version 3 i
 
 - install `python3` and `pip3` according to your OS
 - install dependencies using `pip3 install -r requirements.txt`
-- run app with `python3 ./main.py -c ./install/config.yml`, without specifying config file cleaner will not work
+- run app with `python3 ./main.py -c ./cleaner/install/config.yml`, without specifying config file cleaner will not work
 
 ## Installation
 
 **Fedora (and other RPM distributions):**
 
-- run `python3 setup.py bdist_rpm --post-install ./install/postints` to generate binary `.rpm` package
+- run `python3 setup.py bdist_rpm --post-install ./cleaner/install/postinst` to generate binary `.rpm` package
 - install package using `sudo dnf install ./dist/recodex-cleaner-0.1.0-1.noarch.rpm` (depends on actual version)
 
 **Other Linux systems:**
 
 - run installation as `python3 setup.py install --install-scripts /usr/bin`
-- run postinst script as root with `sudo ./install/postinst`
+- run postinst script as root with `sudo ./cleaner/install/postinst`
 
 **Windows:**
 
