@@ -3,6 +3,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
 [![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://recodex.github.io/cleaner/)
 [![Wiki](https://img.shields.io/badge/docs-wiki-orange.svg)](https://github.com/ReCodEx/wiki/wiki)
+[![COPR](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/package/recodex-cleaner/status_image/last_build.png)]()
 
 Cleaner is script which should be cronned on machine on which worker is deployed. Its function is continuously delete cache folder from old files which are no longer used. To efectively do this filesystem should be able to display last access time.
 
