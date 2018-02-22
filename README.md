@@ -1,4 +1,4 @@
-# Cleaner
+# Cleaner - OUTDATED DO NOT INSTALL!
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
 [![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://recodex.github.io/cleaner/)
@@ -31,6 +31,18 @@ Whole cleaner is written in `python` and uses version 3 features. If version 3 i
 
 ## Installation
 
+### COPR Installation
+
+Follows description for CentOS which will do all steps as described in _Manual Installation_.
+
+```
+$ yum install yum-plugin-copr
+$ yum copr enable semai/ReCodEx
+$ yum install recodex-cleaner
+```
+
+### Manual Installation
+
 **Fedora (and other RPM distributions):**
 
 - run `python3 setup.py bdist_rpm --post-install ./cleaner/install/postinst` to generate binary `.rpm` package
@@ -54,6 +66,31 @@ Generally there are two steps which has to be done to properly run cleaner servi
 
 - editation of configuration file and setting up all things needed. **Note: Cache directory which will be cleaned should be same as for workers!**
 - Setup cron to execute cleaner in given interval (once in a day should work)
+
+### Configuration
+
+The default location for cleaner configuration file is
+`/etc/recodex/cleaner/config.yml`.
+
+#### Configuration items
+
+- **cache-dir** -- directory which cleaner manages
+- **file-age** -- file age in seconds which is considered as outdated and will
+   be marked for deletion
+
+#### Example configuration
+
+```{.yml}
+cache-dir: "/tmp"
+file-age: "3600"  # in seconds
+```
+
+### Execution
+
+As stated before cleaner should be croned, on linux systems this can be done by
+built in `cron` service or if there is `systemd` present cleaner itself provides
+`*.timer` file which can be used for croning from `systemd`. On Windows systems
+internal scheduler should be used.
 
 **Linux (with systemd):**
 
