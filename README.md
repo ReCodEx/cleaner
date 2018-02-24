@@ -5,7 +5,22 @@
 [![Wiki](https://img.shields.io/badge/docs-wiki-orange.svg)](https://github.com/ReCodEx/wiki/wiki)
 [![COPR](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/package/recodex-cleaner/status_image/last_build.png)]()
 
-Cleaner is script which should be cronned on machine on which worker is deployed. Its function is continuously delete cache folder from old files which are no longer used. To efectively do this filesystem should be able to display last access time.
+Cleaner component is tightly bound to the worker. It manages the cache folder of
+the worker, mainly deletes outdated files. Every cleaner instance maintains one
+cache folder, which can be used by multiple workers. This means on one server
+there can be numerous instances of workers with the same cache folder, but there
+should be only one cleaner instance.
+
+Cleaner is written in Python 3 programming language, so it works well
+multi-platform. It uses only `pyyaml` library for reading configuration file and
+`argparse` library for processing command line arguments.
+
+It is a simple script which checks the cache folder, possibly deletes old files
+and then ends. This means that the cleaner has to be run repeatedly, for example
+using cron, systemd timer or Windows task scheduler. For proper function of the
+cleaner a suitable cronning interval has to be used. It is recommended to use
+24 hour interval which is sufficient enough for intended usage. The value is set
+in the configuration file of the cleaner.
 
 ## Enable last access timestamp
 
@@ -115,3 +130,7 @@ Cronning on Windows is provided by `Task Scheduler`. This can be done using GUI 
 - find your `recodex-cleaner` installation on your filesystem, `C:\Program Files\ReCodEx\cleaner` will be used as demonstrative
 - execute following command `schtasks /create /sc daily /tn "ReCodEx Cleaner" /tr "\"C:\Program Files\ReCodEx\cleaner\recodex-cleaner.exe\" -c \"C:\Program Files\ReCodEx\cleaner\config.yml\""`
 - this will create task named `ReCodEx Cleaner` which will be executed daily on time of creation
+
+## Documentation
+
+Feel free to read the documentation on [our wiki](https://github.com/ReCodEx/wiki/wiki).
