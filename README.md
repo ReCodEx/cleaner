@@ -3,6 +3,7 @@
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
 [![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://recodex.github.io/cleaner/)
 [![Wiki](https://img.shields.io/badge/docs-wiki-orange.svg)](https://github.com/ReCodEx/wiki/wiki)
+[![GitHub release](https://img.shields.io/github/release/recodex/cleaner.svg)](https://github.com/ReCodEx/wiki/wiki/Changelog)
 [![COPR](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/package/recodex-cleaner/status_image/last_build.png)]()
 
 Cleaner component is tightly bound to the worker. It manages the cache folder of
