@@ -8,7 +8,7 @@ import time
 class Cleaner:
     """
     Cleaner class handles cleaning of given cache folder.
-    Files are cleaned based on last access time, which have to be in interval given in configuration.
+    Files are cleaned based on last modification time, which have to be in interval given in configuration.
     """
 
     def __init__(self, config):
@@ -74,15 +74,16 @@ class Cleaner:
 
             :param root: path to root directory, used as base
             :param file: name of file itself, root is used as base and joined with this
-            :param action: action which will be performed if access timestamp is older than given interval
+            :param action: action which will be performed if modification timestamp is older than given interval
             :return: Nothing
             """
+
             full_path = os.path.join(root, file)
-            last_access = round(os.stat(full_path).st_atime)
-            difference = now - last_access
+            last_modification = round(os.stat(full_path).st_mtime)
+            difference = now - last_modification
 
             print(full_path)
-            print("    last access: " + str(last_access))
+            print("    last modification: " + str(last_modification))
             print("    difference: " + str(difference))
 
             if difference > self._file_age:
