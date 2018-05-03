@@ -1,4 +1,4 @@
-# Cleaner - OUTDATED DO NOT INSTALL!
+# Cleaner
 
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://badges.mit-license.org)
 [![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://recodex.github.io/cleaner/)
@@ -17,25 +17,11 @@ multi-platform. It uses only `pyyaml` library for reading configuration file and
 `argparse` library for processing command line arguments.
 
 It is a simple script which checks the cache folder, possibly deletes old files
-and then ends. This means that the cleaner has to be run repeatedly, for example
-using cron, systemd timer or Windows task scheduler. For proper function of the
-cleaner a suitable cronning interval has to be used. It is recommended to use
-24 hour interval which is sufficient enough for intended usage. The value is set
-in the configuration file of the cleaner.
-
-## Enable last access timestamp
-
-**Linux:**
-
-- open `/etc/fstab` as administrator
-- filesystem which will be used as `ReCodEx` cache has to have `strictatime` option specified
-- more on this subject can be found [here](https://en.wikipedia.org/wiki/Stat_%28system_call%29#Criticism_of_atime)
-
-**Windows:**
-
-- start `cmd` with administrator permissions
-- run following command `fsutil behavior set disablelastaccess 0`
-- restart computer and last time access timestamps should be functional
+(based on last modification times) and then ends. This means that the cleaner has
+to be run repeatedly, for example using cron, systemd timer or Windows task
+scheduler. For proper function of the cleaner a suitable cron interval has to
+be used. It is recommended to use 24 hour interval which is sufficient enough for
+intended usage. The value is set in the configuration file of the cleaner.
 
 ## How to run it
 
@@ -125,7 +111,7 @@ In case of manual execution, `cleaner` should be run using `cron` with some reco
 
 **Windows:**
 
-Cronning on Windows is provided by `Task Scheduler`. This can be done using GUI interface or with command line, command line description follows:
+Cron on Windows is provided by `Task Scheduler`. This can be done using GUI interface or with command line, command line description follows:
 
 - start `cmd` as administrator
 - find your `recodex-cleaner` installation on your filesystem, `C:\Program Files\ReCodEx\cleaner` will be used as demonstrative
