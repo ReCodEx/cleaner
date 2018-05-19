@@ -4,7 +4,7 @@
 [![Docs](https://img.shields.io/badge/docs-latest-brightgreen.svg)](http://recodex.github.io/cleaner/)
 [![Wiki](https://img.shields.io/badge/docs-wiki-orange.svg)](https://github.com/ReCodEx/wiki/wiki)
 [![GitHub release](https://img.shields.io/github/release/recodex/cleaner.svg)](https://github.com/ReCodEx/wiki/wiki/Changelog)
-[![COPR](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/package/recodex-cleaner/status_image/last_build.png)]()
+[![COPR](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/package/recodex-cleaner/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/semai/ReCodEx/)
 
 Cleaner component is tightly bound to the worker. It manages the cache folder of
 the worker, mainly deletes outdated files. Every cleaner instance maintains one
@@ -21,7 +21,7 @@ It is a simple script which checks the cache folder, possibly deletes old files
 to be run repeatedly, for example using cron, systemd timer or Windows task
 scheduler. For proper function of the cleaner a suitable cron interval has to
 be used. It is recommended to use 24 hour interval which is sufficient enough for
-intended usage. The value is set in the configuration file of the cleaner.
+intended usage.
 
 ## How to run it
 
@@ -72,7 +72,7 @@ Generally there are two steps which has to be done to properly run cleaner servi
 ### Configuration
 
 The default location for cleaner configuration file is
-`/etc/recodex/cleaner/config.yml`.
+`/etc/recodex/cleaner/config.yml`. Example configuration file can be found in `cleaner/install/config.yml`.
 
 #### Configuration items
 
@@ -80,17 +80,10 @@ The default location for cleaner configuration file is
 - **file-age** -- file age in seconds which is considered as outdated and will
    be marked for deletion
 
-#### Example configuration
-
-```{.yml}
-cache-dir: "/tmp"
-file-age: "3600"  # in seconds
-```
-
 ### Execution
 
-As stated before cleaner should be croned, on linux systems this can be done by
-built in `cron` service or if there is `systemd` present cleaner itself provides
+As stated before cleaner should be run in cron, on linux systems this can be done by
+built in `cron` service or if there is `systemd` present, cleaner itself provides
 `*.timer` file which can be used for croning from `systemd`. On Windows systems
 internal scheduler should be used.
 
