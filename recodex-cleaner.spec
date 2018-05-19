@@ -1,7 +1,7 @@
 %define name recodex-cleaner
-%define version 1.0.0
-%define unmangled_version 1.0.0
-%define unmangled_version 1.0.0
+%define version 1.1.0
+%define unmangled_version 1.1.0
+%define unmangled_version 1.1.0
 %define release 1
 
 Summary: Clean cache which is used by ReCodEx workers
@@ -17,8 +17,12 @@ BuildArch: noarch
 Vendor: ReCodEx Team <UNKNOWN>
 Url: https://github.com/ReCodEx/cleaner
 
+%if 0%{?fedora}
+BuildRequires: python3 python3-devel python3-setuptools python3-pip
+%endif
+
 %description
-UNKNOWN
+ReCodEx cache cleaner which should be deployed with recodex-worker.
 
 %prep
 %setup -n %{name}-%{unmangled_version} -n %{name}-%{unmangled_version}
