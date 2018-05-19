@@ -1,4 +1,4 @@
 ---
 cache-dir: "/tmp"
-file-age: "3600"  # in seconds
+file-age: "604800"  # in seconds
 ...
