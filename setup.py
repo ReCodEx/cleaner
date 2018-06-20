@@ -8,7 +8,7 @@ if sys.platform == "win32":
     files=[]
 else:
     files=[
-        ('/etc/systemd/system', ['cleaner/install/recodex-cleaner.service', 'cleaner/install/recodex-cleaner.timer']),
+        ('/lib/systemd/system', ['cleaner/install/recodex-cleaner.service', 'cleaner/install/recodex-cleaner.timer']),
         ('/etc/recodex/cleaner', ['cleaner/install/config.yml'])
     ]
 

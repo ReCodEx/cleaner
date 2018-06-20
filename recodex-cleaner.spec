@@ -1,14 +1,13 @@
 %define name recodex-cleaner
+%define short_name cleaner
 %define version 1.1.0
-%define unmangled_version 1.1.0
-%define unmangled_version 1.1.0
-%define release 1
+%define unmangled_version 0131021222d8c8a93b4eed71091be6cfbe1a765f
+%define release 2
 
 Summary: Clean cache which is used by ReCodEx workers
 Name: %{name}
 Version: %{version}
 Release: %{release}
-Source0: %{name}-%{unmangled_version}.tar.gz
 License: MIT
 Group: Development/Libraries
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -17,46 +16,56 @@ BuildArch: noarch
 Vendor: ReCodEx Team <UNKNOWN>
 Url: https://github.com/ReCodEx/cleaner
 
-%if 0%{?fedora}
-BuildRequires: python3 python3-devel python3-setuptools python3-pip
-%endif
+BuildRequires: systemd
+%{?fedora:BuildRequires: python3 python3-devel python3-setuptools}
+%{?rhel:BuildRequires: python34 python34-devel python34-setuptools}
+Requires(post): systemd
+Requires(preun): systemd
+Requires(postun): systemd
+%{?fedora:Requires: python3-PyYAML}
+%{?rhel:Requires: python34-PyYAML}
+
+Source0: https://github.com/ReCodEx/%{short_name}/archive/%{unmangled_version}.tar.gz#/%{short_name}-%{unmangled_version}.tar.gz
 
 %description
 ReCodEx cache cleaner which should be deployed with recodex-worker.
 
 %prep
-%setup -n %{name}-%{unmangled_version} -n %{name}-%{unmangled_version}
+%setup -n %{short_name}-%{unmangled_version}
 
 %build
-python3 setup.py build
+%py3_build
 
 %install
-python3 setup.py install --single-version-externally-managed -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
+%py3_install
+mkdir -p %{buildroot}/var/log/recodex
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%pre
+getent group recodex >/dev/null || groupadd -r recodex
+getent passwd recodex >/dev/null || useradd -r -g recodex -d %{_sysconfdir}/recodex -s /sbin/nologin -c "ReCodEx Code Examiner" recodex
+exit 0
+
 %post
-#!/bin/sh
+%systemd_post 'recodex-cleaner.service'
 
-CONF_DIR=/etc/recodex
-LOG_DIR=/var/log/recodex
+%preun
+%systemd_preun 'recodex-cleaner.service'
 
-# Create 'recodex' user if not exist
-id -u recodex > /dev/null 2>&1
-if [ $? -eq 1 ]
-then
-	useradd --system --shell /sbin/nologin recodex
-fi
+%postun
+%systemd_postun 'recodex-cleaner.service'
 
-# Create default logging directory and set proper permission
-mkdir -p ${LOG_DIR}
-chown -R recodex:recodex ${LOG_DIR}
-
-# Change owner of config files
-chown -R recodex:recodex ${CONF_DIR}
-
-
-
-%files -f INSTALLED_FILES
+%files
 %defattr(-,root,root)
+%dir %attr(-,recodex,recodex) %{_sysconfdir}/recodex/cleaner
+%dir %attr(-,recodex,recodex) /var/log/recodex
+
+%{python3_sitelib}/cleaner/
+%{python3_sitelib}/recodex_cleaner-%{version}-py?.?.egg-info/
+%{_bindir}/recodex-cleaner
+%config(noreplace) %attr(-,recodex,recodex) %{_sysconfdir}/recodex/cleaner/config.yml
+/lib/systemd/system/recodex-cleaner.service
+/lib/systemd/system/recodex-cleaner.timer
+
