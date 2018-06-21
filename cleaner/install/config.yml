@@ -1,5 +1,5 @@
 ---
-cache-dir: "/var/recodex-worker-wd"
+cache-dir: "/var/recodex-worker-cache"
 file-age: 604800  # in seconds
 logger:
     file: "/var/log/recodex/cleaner.log"

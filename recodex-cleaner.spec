@@ -1,8 +1,8 @@
 %define name recodex-cleaner
 %define short_name cleaner
 %define version 1.2.0
-%define unmangled_version bcfc1e8f7448fe44173752d5d22246d4700218ef
-%define release 1
+%define unmangled_version e4b11359097d870d6c741911036d4c3797ce64c4
+%define release 3
 
 Summary: Clean cache which is used by ReCodEx workers
 Name: %{name}
