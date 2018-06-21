@@ -11,15 +11,17 @@ class Cleaner:
     Files are cleaned based on last modification time, which have to be in interval given in configuration.
     """
 
-    def __init__(self, config):
+    def __init__(self, config, logger):
         """
         Constructor which takes configuration of cleaner.
 
         :param config: have to be instance of ConfigManager class
+        :param logger: System logger instance
         :raises Exception: if values from configuration are not valid
         """
         self._cache_dir = config.get_cache_dir()
         self._file_age = config.get_file_age()
+        self._logger = logger
 
         self.check_cache_dir()
         self.check_file_age()
@@ -47,10 +49,8 @@ class Cleaner:
         if self._file_age is None:
             raise Exception("File age not specified!")
 
-        if not self._file_age.isdigit():
-            raise Exception("File age is not a number!")
-
-        self._file_age = int(self._file_age)
+        if self._file_age <= 0:
+            raise Exception("File age is not positive number!")
 
     def clean(self):
         """
@@ -61,20 +61,15 @@ class Cleaner:
 
         # some general debug information about this time execution
         now = round(time.time())
-        print("****************************************")
-        print("Cleaning files from \"" + self._cache_dir + "\"")
-        print("With maximum file age: " + str(self._file_age) + " seconds")
-        print("Timestamp now: " + str(now) + " seconds")
-        print("****************************************")
+        self._logger.info("Cleaning files from \"{}\"".format(self._cache_dir))
+        self._logger.info("Maximum file age: {} seconds".format(self._file_age))
 
-        def process_path(root, file, action):
+        def process_file(root, file):
             """
-            Process given path, path can be file or directory.
-            Given action is executed on constructed full path
+            Process given file. If modification timestamp is too old, the file will be removed.
 
             :param root: path to root directory, used as base
             :param file: name of file itself, root is used as base and joined with this
-            :param action: action which will be performed if modification timestamp is older than given interval
             :return: Nothing
             """
 
@@ -82,20 +77,45 @@ class Cleaner:
             last_modification = round(os.stat(full_path).st_mtime)
             difference = now - last_modification
 
-            print(full_path)
-            print("    last modification: " + str(last_modification))
-            print("    difference: " + str(difference))
+            self._logger.debug("last modification: {}".format(last_modification))
+            self._logger.debug("age from now: {} seconds".format(difference))
 
             if difference > self._file_age:
+                self._logger.debug("file \"{}\" marked for deletion".format(full_path))
                 try:
-                    action(full_path)
-                    print("    >>> REMOVED <<<")
+                    os.remove(full_path)
+                    self._logger.info("file \"{}\" removed".format(full_path))
                 except Exception as ex:
-                    print("    >>> Exception occured: " + str(ex))
+                    self._logger.warning("removing file \"{}\" failed: {}".format(full_path, ex))
+            else:
+                self._logger.debug("file \"{}\" will be kept".format(full_path))
 
-        # iterate recursively through given directory
-        for root, dirs, files in os.walk(self._cache_dir):
+        def process_directory(root, dir):
+            """
+            Process given directory. If it is empty, the directory will be removed.
+
+            :param root: path to root directory, used as base
+            :param file: name of directory itself, root is used as base and joined with this
+            :return: Nothing
+            """
+
+            full_path = os.path.join(root, dir)
+            if not os.listdir(full_path):
+                self._logger.debug("directory \"{}\" is empty".format(full_path))
+                try:
+                    os.rmdir(full_path)
+                    self._logger.info("directory \"{}\" removed".format(full_path))
+                except Exception as ex:
+                    self._logger.warning("removing directory \"{}\" failed: {}".format(full_path, ex))
+           else:
+               self._logger.debug("directory \"{}\" is not empty and will be kept".format(full_path))
+
+        # iterate recursively through given directory (in DFS order)
+        for root, dirs, files in os.walk(self._cache_dir, topdown=False):
             for file in files:
-                process_path(root, file, os.remove)
+                self._logger.info("Processing file: {}".format(file))
+                process_file(root, file)
             for dir in dirs:
-                process_path(root, dir, os.rmdir)
+                self._logger.info("Processing directory: {}".format(dir))
+                process_directory(root, dir)
+

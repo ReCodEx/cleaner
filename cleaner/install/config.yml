@@ -1,4 +1,9 @@
 ---
-cache-dir: "/tmp"
-file-age: "604800"  # in seconds
+cache-dir: "/var/recodex-worker-wd"
+file-age: 604800  # in seconds
+logger:
+    file: "/var/log/recodex/cleaner.log"
+    level: "debug"  # level of logging - one of "debug", "info", "warning", "error", "critical"
+    max-size: 1048576  # 1 MB; max size of file before log rotation
+    rotations: 3  # number of rotations kept
 ...

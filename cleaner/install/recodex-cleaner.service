@@ -21,3 +21,4 @@ ExecStart=/usr/bin/recodex-cleaner -c /etc/recodex/cleaner/config.yml
 
 [Install]
 WantedBy=multi-user.target
+

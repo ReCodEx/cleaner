@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .config_manager import ConfigManager
+from .config_manager import ConfigManager, init_logger
 from .cleaner import Cleaner
 import argparse
 import sys
@@ -21,10 +21,14 @@ def main():
     try:
         # get configuration
         config = ConfigManager(args.config)
-        cleaner = Cleaner(config)
+        logger = init_logger(*config.get_logger_settings())
+        cleaner = Cleaner(config, logger)
         cleaner.clean()
+        logger.info("Cleaning finished, quiting")
     except Exception as ex:
-        print("Exception occured: " + str(ex), file=sys.stderr)
+        error_text = "Exception occured: {}".format(str(ex))
+        logger.warning(error_text)
+        print(error_text, file=sys.stderr)
 
 if __name__ == "__main__":
     main()

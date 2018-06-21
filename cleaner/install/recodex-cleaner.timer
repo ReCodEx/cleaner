@@ -12,7 +12,8 @@ DefaultDependencies=true
 
 [Timer]
 OnCalendar=daily
-Persistent=true     
- 
+Persistent=true
+
 [Install]
 WantedBy=timers.target
+
