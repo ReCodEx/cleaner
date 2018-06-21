@@ -107,8 +107,8 @@ class Cleaner:
                     self._logger.info("directory \"{}\" removed".format(full_path))
                 except Exception as ex:
                     self._logger.warning("removing directory \"{}\" failed: {}".format(full_path, ex))
-           else:
-               self._logger.debug("directory \"{}\" is not empty and will be kept".format(full_path))
+            else:
+                self._logger.debug("directory \"{}\" is not empty and will be kept".format(full_path))
 
         # iterate recursively through given directory (in DFS order)
         for root, dirs, files in os.walk(self._cache_dir, topdown=False):
