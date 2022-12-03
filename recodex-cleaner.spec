@@ -2,7 +2,7 @@
 %define short_name cleaner
 %define version 1.2.0
 %define unmangled_version e4b11359097d870d6c741911036d4c3797ce64c4
-%define release 3
+%define release 8
 
 Summary: Clean cache which is used by ReCodEx workers
 Name: %{name}
@@ -18,12 +18,12 @@ Url: https://github.com/ReCodEx/cleaner
 
 BuildRequires: systemd
 %{?fedora:BuildRequires: python3 python3-devel python3-setuptools}
-%{?rhel:BuildRequires: python34 python34-devel python34-setuptools}
+%{?rhel:BuildRequires: python3 python3-devel python3-setuptools}
 Requires(post): systemd
 Requires(preun): systemd
 Requires(postun): systemd
 %{?fedora:Requires: python3-PyYAML}
-%{?rhel:Requires: python34-PyYAML}
+%{?rhel:Requires: python3-PyYAML}
 
 Source0: https://github.com/ReCodEx/%{short_name}/archive/%{unmangled_version}.tar.gz#/%{short_name}-%{unmangled_version}.tar.gz
 
