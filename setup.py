@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
+"""
+DEPRECATED: This setup.py file is deprecated in favor of pyproject.toml.
+Use 'pip install .' instead of 'python setup.py install'.
+For system file installation, run 'python install_system_files.py' after
+pip install.
+"""
+
 from setuptools import setup
 import sys
 from cleaner import __version__
 
 if sys.platform == "win32":
-    files=[]
+    files = []
 else:
-    files=[
+    files = [
         ('/lib/systemd/system', ['cleaner/install/recodex-cleaner.service', 'cleaner/install/recodex-cleaner.timer']),
         ('/etc/recodex/cleaner', ['cleaner/install/config.yml'])
     ]

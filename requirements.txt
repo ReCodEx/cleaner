@@ -1,8 +1,10 @@
 #
-# Required packages for ReCodEx cleaner tool
+# DEPRECATED: Dependencies are now defined in pyproject.toml
+# This file is kept for backward compatibility only.
+# Use 'pip install .' instead of 'pip install -r requirements.txt'
 #
 
-# Argument and configuration parsing
+# Required packages for ReCodEx cleaner tool
 pyyaml
 argparse
 
