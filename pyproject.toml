@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recodex-cleaner"
+dynamic = ["version"]
+description = "Clean cache which is used by ReCodEx workers"
+authors = [
+    {name = "ReCodEx Team"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.9"
+keywords = ["ReCodEx", "cleaner", "cache"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "pyyaml",
+    "argparse; python_version < '3.2'",
+]
+
+[project.urls]
+Homepage = "https://github.com/ReCodEx/cleaner"
+Repository = "https://github.com/ReCodEx/cleaner"
+Documentation = "http://recodex.github.io/cleaner/"
+
+[project.scripts]
+recodex-cleaner = "cleaner.main:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "cleaner.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["cleaner*"]
+
+[tool.setuptools.package-data]
+cleaner = ["install/*"]
+
+# Platform-specific data files configuration
+# Note: data_files from setup.py need to be handled differently in pyproject.toml
+# This is typically done through post-install scripts or package managers
