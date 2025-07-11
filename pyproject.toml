@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "recodex-cleaner"
-dynamic = ["version"]
+version = "1.2.0"
 description = "Clean cache which is used by ReCodEx workers"
 authors = [
     {name = "ReCodEx Team"}
@@ -37,9 +37,6 @@ Documentation = "http://recodex.github.io/cleaner/"
 
 [project.scripts]
 recodex-cleaner = "cleaner.main:main"
-
-[tool.setuptools.dynamic]
-version = {attr = "cleaner.__version__"}
 
 [tool.setuptools.packages.find]
 include = ["cleaner*"]
