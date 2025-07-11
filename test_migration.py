@@ -34,9 +34,9 @@ def test_pyproject_toml():
 
     # Check project metadata
     project = config["project"]
-    required_fields = ["name", "description", "authors"]
+    required_fields = ["name", "description", "authors", "version"]
     for field in required_fields:
-        if field not in project:
+        if field not in project and field not in config.get("project", {}).get("dynamic", []):
             print(f"❌ Missing required field: project.{field}")
             return False
         print(f"✅ Found field: project.{field}")
