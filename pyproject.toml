@@ -4,19 +4,18 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "recodex-cleaner"
-version = "1.2.0"
+version = "1.3.0"
 description = "Clean cache which is used by ReCodEx workers"
 authors = [
     {name = "ReCodEx Team"}
 ]
-license = {text = "MIT"}
+license = "MIT"
 readme = "README.md"
 requires-python = ">=3.9"
 keywords = ["ReCodEx", "cleaner", "cache"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
@@ -38,8 +37,8 @@ Documentation = "http://recodex.github.io/cleaner/"
 [project.scripts]
 recodex-cleaner = "cleaner.main:main"
 
-[tool.setuptools.packages.find]
-include = ["cleaner*"]
+[tool.setuptools]
+packages = ["cleaner"]
 
 [tool.setuptools.package-data]
 cleaner = ["install/*"]

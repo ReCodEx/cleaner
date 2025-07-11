@@ -1,8 +1,8 @@
 %define name recodex-cleaner
 %define short_name cleaner
-%define version 1.2.0
+%define version 1.3.0
 %define unmangled_version e4b11359097d870d6c741911036d4c3797ce64c4
-%define release 8
+%define release 1
 
 Summary: Clean cache which is used by ReCodEx workers
 Name: %{name}
@@ -17,8 +17,11 @@ Vendor: ReCodEx Team <UNKNOWN>
 Url: https://github.com/ReCodEx/cleaner
 
 BuildRequires: systemd
-%{?fedora:BuildRequires: python3 python3-devel python3-setuptools}
-%{?rhel:BuildRequires: python3 python3-devel python3-setuptools}
+%{?fedora:BuildRequires: python3 python3-devel python3-pip python3-wheel}
+%{?rhel:BuildRequires: python3 python3-devel python3-pip python3-wheel}
+# Modern Python build tools for pyproject.toml
+BuildRequires: python3dist(build)
+BuildRequires: python3dist(setuptools) >= 61.0
 Requires(post): systemd
 Requires(preun): systemd
 Requires(postun): systemd
@@ -34,11 +37,24 @@ ReCodEx cache cleaner which should be deployed with recodex-worker.
 %setup -n %{short_name}-%{unmangled_version}
 
 %build
-%py3_build
+# Build using modern Python build system with pyproject.toml
+# This replaces the legacy setup.py build process
+%{python3} -m build --wheel --no-isolation
 
 %install
-%py3_install
+# Install the wheel using pip (modern approach)
+%{python3} -m pip install --no-deps --no-index --find-links dist/ --prefix=%{buildroot}%{_prefix} --root=%{buildroot} recodex-cleaner
+
+# Create log directory
 mkdir -p %{buildroot}/var/log/recodex
+
+# Install system files manually (replaces setup.py data_files)
+# These files are no longer installed automatically with pyproject.toml
+mkdir -p %{buildroot}/lib/systemd/system
+mkdir -p %{buildroot}%{_sysconfdir}/recodex/cleaner
+install -m 644 cleaner/install/recodex-cleaner.service %{buildroot}/lib/systemd/system/
+install -m 644 cleaner/install/recodex-cleaner.timer %{buildroot}/lib/systemd/system/
+install -m 644 cleaner/install/config.yml %{buildroot}%{_sysconfdir}/recodex/cleaner/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -63,7 +79,7 @@ exit 0
 %dir %attr(-,recodex,recodex) /var/log/recodex
 
 %{python3_sitelib}/cleaner/
-%{python3_sitelib}/recodex_cleaner-%{version}-py?.?.egg-info/
+%{python3_sitelib}/recodex_cleaner-%{version}.dist-info/
 %{_bindir}/recodex-cleaner
 %config(noreplace) %attr(-,recodex,recodex) %{_sysconfdir}/recodex/cleaner/config.yml
 /lib/systemd/system/recodex-cleaner.service
