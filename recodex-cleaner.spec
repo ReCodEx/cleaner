@@ -1,7 +1,7 @@
 %define name recodex-cleaner
 %define short_name cleaner
 %define version 1.3.0
-%define unmangled_version e4b11359097d870d6c741911036d4c3797ce64c4
+%define unmangled_version bcb9308ac903ed94313ec8436ead5cbfee12363d
 %define release 1
 
 Summary: Clean cache which is used by ReCodEx workers
@@ -43,7 +43,7 @@ ReCodEx cache cleaner which should be deployed with recodex-worker.
 
 %install
 # Install the wheel using pip (modern approach)
-%{python3} -m pip install --no-deps --no-index --find-links dist/ --prefix=%{buildroot}%{_prefix} --root=%{buildroot} recodex-cleaner
+%{python3} -m pip install --no-deps --no-index --find-links dist/ --root=%{buildroot} recodex-cleaner
 
 # Create log directory
 mkdir -p %{buildroot}/var/log/recodex
